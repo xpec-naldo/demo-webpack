@@ -3,15 +3,17 @@
  *
  * @version 1.0.1
  * @author Naldo Duran <naldorck@gmail.com>
- * @returns {Intersection}
+ * @returns {Resizer}
  */
+import ResizeObserver from "resize-observer-polyfill"
+
 export default class {
   constructor() {}
 
   private callback(entries: ResizeObserverEntry[]) {
     entries.forEach((entry: ResizeObserverEntry) => {
       const _target = entry.target
-      const _index: string  = _target.getAttribute("data-index") || ""
+      const _index: string = _target.getAttribute("data-index") || ""
       const wrapper = document.querySelector(`.toolbar > ul > li[data-index="${_index}"]`)
 
       if (!wrapper) return

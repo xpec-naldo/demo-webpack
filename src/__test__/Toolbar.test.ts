@@ -7,18 +7,13 @@
  */
 import { Toolbar } from "../classes"
 import template from "./mockup/template_index"
-import { IWrapperDiv } from "../types/globals"
 
 describe("Toolbar", () => {
   let toolbar: Toolbar
-  let dom_toolbar: IWrapperDiv
-  let dom_results: IWrapperDiv
 
   beforeEach(async () => {
     document.body.innerHTML = template
     toolbar = new Toolbar()
-    dom_toolbar = document.querySelector(".toolbar")
-    dom_results = document.querySelector(".results")
   })
 
   test("Toolbar should be empty during the initial load", () => {
