@@ -1,37 +1,40 @@
 /**
- * Test: Resizer
+ * Test: Intersection
  *
  * @version 1.0.1
  * @author Naldo Duran <naldorck@gmail.com>
  * @returns {void}
  */
-import { Toolbar, Resizer } from "../classes"
+import "intersection-observer"
+import { Intersection, Toolbar } from "../classes"
 import template from "./mockup/template_index"
 
-describe("Resizer", () => {
-  let resizer: Resizer
+describe("Interseption", () => {
+  let intersection: Intersection
   let toolbar: Toolbar
 
   beforeEach(async () => {
     document.body.innerHTML = template
     toolbar = new Toolbar()
     toolbar.exec()
-    resizer = new Resizer()
+    intersection = new Intersection()
   })
 
   test("ResizeObserver is attached to window", () => {
-    expect(window.ResizeObserver).not.toBeUndefined()
+    expect(window.IntersectionObserver).not.toBeUndefined()
   })
 
-  test("ResizeObserver should be invoked", () => {
+  test("InterceptionObserver should be invoked", () => {
     const observe = jest.fn()
     const unobserve = jest.fn()
+    const disconnect = jest.fn()
     // @ts-ignore
-    window.ResizeObserver = jest.fn(() => ({
+    window.IntersectionObserver = jest.fn(() => ({
       observe,
       unobserve,
+      disconnect,
     }))
-    resizer.exec()
+    intersection.exec()
     expect(observe).toHaveBeenCalled()
   })
 })

@@ -17,7 +17,7 @@ export default class {
 
     return options
   }
-
+  
   private callback(entries: IntersectionObserverEntry[]) {
     const _target = entries[0].target
     const entry: IntersectionObserverEntry = entries[0]
@@ -42,7 +42,6 @@ export default class {
     const target: NodeListOf<HTMLElement> = document.querySelectorAll(".results > .results__item")
 
     let observer = new IntersectionObserver(this.callback, this.get_options())
-
     Array.from(target).forEach((item: HTMLElement) => {
       observer.observe(item)
     })

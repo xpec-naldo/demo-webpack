@@ -5,7 +5,9 @@
  * @author Naldo Duran <naldorck@gmail.com>
  * @returns {Resizer}
  */
-import ResizeObserver from "resize-observer-polyfill"
+import { install } from "resize-observer"
+
+if (!window.ResizeObserver) install()
 
 export default class {
   constructor() {}
