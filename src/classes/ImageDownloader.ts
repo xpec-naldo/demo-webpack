@@ -23,11 +23,11 @@ export class ImageDownloader {
   }
 
   public async download() {
-    try {
-      if (!isUri(this.url)) {
-        throw new Error("Url:invalid")
-      }
+    if (!isUri(this.url)) {
+      throw new Error("Url:invalid")
+    }
 
+    try {
       const response = await axios.get(this.url)
       const html = response.data
       const dom = new JSDOM(html)
@@ -55,10 +55,11 @@ export class ImageDownloader {
         }
       }
 
-      return "Process finished"
     } catch (error: any) {
       throw new Error(error)
     }
+
+    return "Process finished"
   }
 
   private has_extension(url: string): boolean {
