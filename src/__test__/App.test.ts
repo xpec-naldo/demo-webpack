@@ -17,15 +17,13 @@ describe("App --config", () => {
     extensions: [".png"],
   }
 
-  test("URL is invalid",  async () => {
+  test("URL is invalid", async () => {
     const downloader = new ImageDownloader("://www.omnixcorp.com/", options)
-    await expect(downloader.download()).rejects.toThrow("Url:invalid");
+    await expect(downloader.download()).rejects.toThrow("Url:invalid")
   })
 
-  test("URL and options are valid and Process is complete",  async () => {
+  test("URL and options are valid and download Process should be completed", async () => {
     const downloader = new ImageDownloader(url, options)
-    await expect(downloader.download()).resolves.not.toThrow();
+    await expect(downloader.download()).resolves.not.toThrow()
   })
-
-
 })

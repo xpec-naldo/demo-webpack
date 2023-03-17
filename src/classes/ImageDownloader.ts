@@ -23,9 +23,11 @@ export class ImageDownloader {
   }
 
   public async download() {
-    if (!isUri(this.url)) {
-      throw new Error("Url:invalid")
-    }
+    if (!isUri(this.url)) throw new Error("Url:invalid")
+
+    if (!this.options?.max_width) throw new Error("Options:Missing width")
+    if (!this.options?.max_height) throw new Error("Options:Missing height")
+    if (!this.options?.extensions) throw new Error("Options:Missing extensions")
 
     try {
       const response = await axios.get(this.url)
@@ -47,14 +49,13 @@ export class ImageDownloader {
           const resized_filename = `${base_name}-${this.options.max_width}x${this.options.max_height}${ext}`
           const output_path = path.join(process.cwd(), "imgs", resized_filename)
 
-          /*await sharp(buffer)
+          await sharp(buffer)
             .resize(this.options.max_width, this.options.max_height, { fit: "contain" })
-            .toFile(output_path)*/
+            .toFile(output_path)
 
           console.log(`Image saved as ${resized_filename}`)
         }
       }
-
     } catch (error: any) {
       throw new Error(error)
     }

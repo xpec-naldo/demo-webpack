@@ -17,4 +17,4 @@ const options: IImageDownloaderOptions = {
 }
 
 const downloader = new ImageDownloader(url, options)
-//downloader.download()
+downloader.download()
