@@ -27,7 +27,7 @@ export class ImageDownloader {
 
     if (!this.options?.max_width) throw new Error("Options:Missing width")
     if (!this.options?.max_height) throw new Error("Options:Missing height")
-    if (!this.options?.extensions) throw new Error("Options:Missing extensions")
+    if (!this.options?.extensions || !this.options?.extensions.length) throw new Error("Options:Invalid extension")
 
     try {
       const response = await axios.get(this.url)

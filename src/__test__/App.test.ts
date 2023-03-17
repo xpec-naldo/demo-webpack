@@ -5,11 +5,10 @@
  * @author Naldo Duran <naldorck@gmail.com> *
  * @returns {void}
  */
-
 import { ImageDownloader } from "../classes/ImageDownloader"
 import { IImageDownloaderOptions } from "../interfaces/IImageDownloaderOptions"
 
-describe("App --config", () => {
+describe("App", () => {
   let url = "http://www.omnixcorp.com/"
   const options: IImageDownloaderOptions = {
     max_width: 200,
@@ -20,6 +19,15 @@ describe("App --config", () => {
   test("URL is invalid", async () => {
     const downloader = new ImageDownloader("://www.omnixcorp.com/", options)
     await expect(downloader.download()).rejects.toThrow("Url:invalid")
+  })
+
+  test("Options extensions is invalid", async () => {
+    const downloader = new ImageDownloader(url, {
+      max_width: 200,
+      max_height: 200,
+      extensions: [],
+    })
+    await expect(downloader.download()).rejects.toThrow("Options:Invalid extension")
   })
 
   test("URL and options are valid and download Process should be completed", async () => {
